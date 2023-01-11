@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Suneetha.Kotapati/OneDrive - Vertex, Inc/Documents/API_UI_Demo">
+        <classes>
+            <class name="com.persistent.register.api.tests.DeleteEmployee">
+                <methods>
+                    <include name="getEmployeeById"/>
+                </methods>
+            </class>
+            <class name="com.persistent.register.api.tests.GetAllEmployees">
+                <methods>
+                    <include name="getEmployees"/>
+                </methods>
+            </class>
+            <class name="com.persistent.register.api.tests.GetParticularEmployee">
+                <methods>
+                    <include name="getEmployeeById"/>
+                </methods>
+            </class>
+            <class name="com.persistent.register.api.tests.PostEmployee">
+                <methods>
+                    <include name="postEmployee"/>
+                </methods>
+            </class>
+            <class name="com.persistent.register.api.tests.UpdateEmployee">
+                <methods>
+                    <include name="updateEmployee"/>
+                </methods>
+            </class>
+            <class name="com.persistent.register.ui.tests.TestClass">
+                <methods>
+                    <include name="verify"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
