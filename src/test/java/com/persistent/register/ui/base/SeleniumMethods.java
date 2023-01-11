@@ -7,12 +7,11 @@ import org.openqa.selenium.WebElement;
 import static com.persistent.register.common.SeleniumWaits.timeout;
 
 public class SeleniumMethods extends BasePage {
-    //WebDriver driver;
+
 
 
     public void sendKeysMethod(By by, String text) {
         timeout();
-       // clickMethod(by);
         driver.findElement(by).clear();
         driver.findElement(by).sendKeys(text);
 
@@ -24,12 +23,7 @@ public class SeleniumMethods extends BasePage {
         JavascriptExecutor js=(JavascriptExecutor)driver;
         WebElement element= driver.findElement(by);
         js.executeScript("arguments[0].scrollIntoView();",element);
-
         driver.findElement(by).click();
-        //Thread.sleep(1000);
-
-
-
     }
 
     public void submitMethod(By by) {

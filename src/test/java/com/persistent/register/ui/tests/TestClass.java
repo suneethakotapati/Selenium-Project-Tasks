@@ -16,7 +16,6 @@ public class TestClass extends  DataFile {
     public void verify()  {
 
         RegistrationPage rgPage=new RegistrationPage(driver);
-
         sendKeysMethod(rgPage.bFirstName,firstName);
         sendKeysMethod(rgPage.lastName,lastName);
         sendKeysMethod(rgPage.email,email);
