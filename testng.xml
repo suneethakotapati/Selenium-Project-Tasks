@@ -2,11 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true"
-          name="C:/Users/Suneetha.Kotapati/OneDrive - Vertex, Inc/Documents/API_UI_Demo">
+          name="Api test cases">
         <classes>
             <class name="com.persistent.register.api.tests.DeleteEmployee">
                 <methods>
-                    <include name="getEmployeeById"/>
+                    <include name="deleteEmployeeById"/>
                 </methods>
             </class>
             <class name="com.persistent.register.api.tests.GetAllEmployees">
@@ -29,11 +29,16 @@
                     <include name="updateEmployee"/>
                 </methods>
             </class>
-            <class name="com.persistent.register.ui.tests.TestClass">
+            <!--<class name="com.persistent.register.ui.tests.TestClass">
                 <methods>
                     <include name="verify"/>
                 </methods>
-            </class>
+            </class>-->
+        </classes>
+    </test>
+    <test name="Ui test cases with Listeners">
+        <classes>
+            <class name="com.persistent.register.ui.tests.TestClass"></class>
         </classes>
     </test>
 </suite>

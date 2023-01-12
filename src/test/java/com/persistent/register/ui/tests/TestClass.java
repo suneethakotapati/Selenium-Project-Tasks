@@ -5,11 +5,12 @@ import com.persistent.register.ui.enums.DataFile;
 import com.persistent.register.ui.pages.RegistrationPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.openqa.selenium.Keys;
 
 import static com.persistent.register.ui.base.SeleniumWaits.timeout;
-
+@Listeners (com.persistent.register.ui.tests.Listeners.class)
 public class TestClass extends  DataFile {
 
     @Test
