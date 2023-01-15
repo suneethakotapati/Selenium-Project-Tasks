@@ -14,7 +14,7 @@ public class PostEmployee extends Data {
         RestAssured.baseURI = baseUrl;
         RequestSpecification HTTPRequest = RestAssured.given();
         JSONObject json = new JSONObject();
-        createEmployee("harini", "16789", "23");
+        createEmployee("haritha", "20090", "23");
         Response response = HTTPRequest.post(path);
         HTTPRequest.header("Content-Type", "application/json");
         HTTPRequest.body(json.toJSONString());

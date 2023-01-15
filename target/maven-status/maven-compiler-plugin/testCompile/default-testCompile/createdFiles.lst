@@ -1,0 +1,16 @@
+com\persistent\register\ui\pages\RegistrationPage.class
+com\persistent\register\ui\tests\Listeners.class
+com\persistent\register\api\base\Methods.class
+com\persistent\register\api\enums\Data.class
+com\persistent\register\api\base\BaseClass.class
+com\persistent\register\ui\base\SeleniumMethods.class
+com\persistent\register\ui\tests\TestClass.class
+com\persistent\register\api\tests\GetAllEmployees.class
+com\persistent\register\ui\base\BasePage.class
+com\persistent\register\api\tests\DeleteEmployee.class
+com\persistent\register\ui\enums\DataFile.class
+com\persistent\register\api\tests\UpdateEmployee.class
+com\persistent\register\api\tests\PostEmployee.class
+com\persistent\register\ui\base\SeleniumWaits.class
+com\persistent\register\common\SeleniumWaits.class
+com\persistent\register\api\tests\GetParticularEmployee.class

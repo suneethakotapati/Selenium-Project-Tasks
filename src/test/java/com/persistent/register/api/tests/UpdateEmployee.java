@@ -9,16 +9,15 @@ import org.testng.annotations.Test;
 
 public class UpdateEmployee extends Data {
     @Test
-    public void updateEmployee(){
-        String path = "/update/2";
+    public void updateEmployee() {
+        String path = "/update/8";
         RestAssured.baseURI = baseUrl;
         RequestSpecification HTTPRequest = RestAssured.given();
-        JSONObject json=new JSONObject();
-        createEmployee("Suneetha","15000","22");
+        JSONObject json = new JSONObject();
+        createEmployee("Suneetha", "15000", "23");
         Response response = HTTPRequest.put(path);
-        HTTPRequest.header("Content-Type","application/json");
+        HTTPRequest.header("Content-Type", "application/json");
         HTTPRequest.body(json.toJSONString());
         responseBody(response);
-
     }
 }

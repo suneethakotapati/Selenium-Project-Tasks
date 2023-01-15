@@ -8,8 +8,8 @@ import org.testng.annotations.Test;
 
 public class DeleteEmployee extends Data {
     @Test
-    public void deleteEmployeeById(){
-        String path = "/delete/9";
+    public void deleteEmployeeById() {
+        String path = "/delete/12";
         RestAssured.baseURI = baseUrl;
         RequestSpecification HTTPRequest = RestAssured.given();
         Response response = HTTPRequest.delete(path);

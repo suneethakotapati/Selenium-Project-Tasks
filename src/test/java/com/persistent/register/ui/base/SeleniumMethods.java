@@ -9,7 +9,6 @@ import static com.persistent.register.common.SeleniumWaits.timeout;
 public class SeleniumMethods extends BasePage {
 
 
-
     public void sendKeysMethod(By by, String text) {
         timeout();
         driver.findElement(by).clear();
@@ -18,11 +17,11 @@ public class SeleniumMethods extends BasePage {
 
     }
 
-    public void clickMethod(By by)  {
+    public void clickMethod(By by) {
         timeout();
-        JavascriptExecutor js=(JavascriptExecutor)driver;
-        WebElement element= driver.findElement(by);
-        js.executeScript("arguments[0].scrollIntoView();",element);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement element = driver.findElement(by);
+        js.executeScript("arguments[0].scrollIntoView();", element);
         driver.findElement(by).click();
     }
 
