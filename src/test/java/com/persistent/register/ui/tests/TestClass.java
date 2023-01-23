@@ -8,8 +8,7 @@ import org.testng.annotations.Test;
 public class TestClass extends DataFile {
 
     @Test
-    public void verify() {
-
+    public void verify()  {
         RegistrationPage rgPage = new RegistrationPage(driver);
         sendKeysMethod(rgPage.bFirstName, firstName);
         sendKeysMethod(rgPage.lastName, lastName);
@@ -17,14 +16,19 @@ public class TestClass extends DataFile {
         clickMethod(rgPage.gender);
         sendKeysMethod(rgPage.mobileNumber, mobileNumber);
         clickMethod(rgPage.dateOfBirthID);
-        clickMethod(rgPage.sendData);
-        clickMethod(rgPage.sendMonth);
+        selectByVis(rgPage.sendYear,year);
+        selectByVis(rgPage.sendMonth,month);
         clickMethod(rgPage.sendDay);
+        clickMethod(rgPage.subject);
+        send(rgPage.subject,sendCommerce);
         clickMethod(rgPage.hobbies);
         sendKeysMethod(rgPage.uploadPic, pic);
         sendKeysMethod(rgPage.locality, address);
+        clickMethod(rgPage.state);
+        clickDropdown(rgPage.clickState);
+        clickMethod(rgPage.city);
+        clickDropdown(rgPage.clickCity);
         submitMethod(rgPage.button);
     }
-
 }
 
