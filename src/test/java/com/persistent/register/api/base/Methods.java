@@ -7,8 +7,8 @@ import org.testng.Assert;
 
 public class Methods extends BaseClass {
     /**
-     *JSONObject is a class that represents a Simple JSON.
-     *We can add Key - Value pairs using the put method
+     * JSONObject is a class that represents a Simple JSON.
+     * We can add Key - Value pairs using the put method
      * @param name
      * @param salary
      * @param age
@@ -22,7 +22,7 @@ public class Methods extends BaseClass {
 
     /**
      * This method is used to get status-code,status line,response body
-     * Assert the correct status code is returned.
+     * Assert is used to check whether the correct status code is returned or not.
      * @param response
      */
     public void responseBody(Response response) {
