@@ -2,19 +2,18 @@ package com.persistent.register.ui.base;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-
-
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import static com.persistent.register.common.SeleniumWaits.timeout;
 
 public class SeleniumMethods extends BasePage {
     /**
      * This method will used to send-data to textboxes,dropdowns.
-     *
      * @param by
      * @param text
      */
@@ -31,7 +30,6 @@ public class SeleniumMethods extends BasePage {
 
     /**
      * This method will used to Send data to dropdowns
-     *
      * @param by
      * @param data
      */
@@ -50,7 +48,7 @@ public class SeleniumMethods extends BasePage {
     }
 
     /**
-     * This method will used to Clicking the textboxes, radio buttons,checkboxes
+     * This method will used to Click textboxes, radio buttons and checkboxes
      *
      * @param by
      */
@@ -63,7 +61,7 @@ public class SeleniumMethods extends BasePage {
     }
 
     /**
-     * This method will used to Clicking the textboxes
+     * This method will used to Click textboxes
      *
      * @param by
      */
@@ -79,7 +77,6 @@ public class SeleniumMethods extends BasePage {
 
     /**
      * This method will used to Submitting the form
-     *
      * @param b1
      */
     public void submit(By b1) {
@@ -90,11 +87,10 @@ public class SeleniumMethods extends BasePage {
 
     /**
      * This method will used to Selecting the data from dropdown using visible text
-     *
      * @param by
      * @param text
      */
-    public void selectByVis(By by, String text) {
+    public void dropdown(By by, String text) {
         WebElement drop = driver.findElement(by);
         Select dropdown = new Select(drop);
         dropdown.selectByVisibleText(text);
@@ -120,8 +116,7 @@ public class SeleniumMethods extends BasePage {
 
 
     /**
-     * This method will used to Getting the text from popup
-     *
+     * This method will used to Get the text from popup
      * @param b2
      */
     public void popUp(By b2) {
@@ -134,6 +129,40 @@ public class SeleniumMethods extends BasePage {
         System.out.println("Assertion for Ui is Passed");
 
     }
+
+    /**
+     * This method is used to get the day from the calender
+     * @param by
+     * @param text
+     */
+    public void day(By by,String text){
+        String date=text;
+        List<WebElement> allDates=driver.findElements(by);
+        for(WebElement ele :allDates){
+            String dt=ele.getText();
+            if(dt.equals(date)){
+                ele.click();
+                break;
+
+            }
+
+        }
+
+
+    }
+
+    /**
+     * This method is used to send text to dropdwons
+     * @param by
+     * @param text
+     */
+    public void sendTextToDropdown(By by, String text){
+        driver.findElement(by).sendKeys(text);
+        Actions actions=new Actions(driver);
+        actions.sendKeys(Keys.TAB).build().perform();
+
+    }
+
 }
 
 

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class RegistrationPage {
     WebDriver driver;
     /**
-     * Id's,xpath's for webelements present in the Qademo form website.
+     * Id's,xpath's for webelements present in the QAdemo form website.
      */
     public By firstName = By.id("firstName");
     public By lastName = By.id("lastName");
@@ -16,11 +16,11 @@ public class RegistrationPage {
     public By dateOfBirthID = By.id("dateOfBirthInput");
     public By sendYear = By.xpath("//select[@class='react-datepicker__year-select']");
     public By sendMonth = By.xpath("//select[@class='react-datepicker__month-select']");
-    public By sendDay = By.xpath("//div[@aria-label='Choose Wednesday, December 11th, 2002']");
+    public By sendDay=By.xpath("//div[@class='react-datepicker__month']//div");
     public By hobbies = By.id("hobbies-checkbox-2");
     public By uploadPic = By.id("uploadPicture");
     public By locality = By.id("currentAddress");
-    public By subject = By.xpath("//div[@id='subjectsContainer'] //div[@class='subjects-auto-complete__value-container subjects-auto-complete__value-container--is-multi css-1hwfws3']//input[@id='subjectsInput']");
+    public By subject=By.xpath("//div[@id='subjectsContainer']//following::input[@id='subjectsInput']");
     public By state = By.xpath("//div[contains(text(),'Select State')]//following::input[1]");
     public By city = By.xpath("//div[contains(text(),'Select City')]//following::input[1]");
 

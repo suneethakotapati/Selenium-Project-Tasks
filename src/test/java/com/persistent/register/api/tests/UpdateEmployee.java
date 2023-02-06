@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 public class UpdateEmployee extends Methods {
     /**
+     * Specify the base URL to the RESTful web service
      * Get the RequestSpecification of the request to be sent to the server
      * Add a header stating the Request body is a JSON
      * Update the employee data to server

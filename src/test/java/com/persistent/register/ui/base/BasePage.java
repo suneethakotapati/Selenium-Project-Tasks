@@ -38,6 +38,7 @@ public class BasePage {
     /**
      * Closing the browser
      * this annotation will be executed when all @Test annotated methods complete the execution of those classes inside the <test> tag
+     * If test fails, it will take screenshot
      */
 
     @AfterMethod

@@ -10,10 +10,10 @@ import org.testng.annotations.Test;
 @Listeners(com.persistent.register.common.Listeners.class)
 public class RegistrationTests extends SeleniumMethods {
     /**
-     * This method will used to write code/business logic
+     * This method is write code/business logic
      */
     @Test
-    public void verifyTest() {
+    public void verifyTest() throws InterruptedException {
         RegistrationPage rgPage = new RegistrationPage(driver);
         String expectedTitle = DataFile.EXPECTED_TITLE.data;
         String originalTitle = driver.getTitle();
@@ -24,16 +24,17 @@ public class RegistrationTests extends SeleniumMethods {
         clickBox(rgPage.gender);
         sendKeys(rgPage.mobileNumber, DataFile.LOGIN_MOBILENUMBER.data);
         clickBox(rgPage.dateOfBirthID);
-        selectByVis(rgPage.sendYear, DataFile.LOGIN_YEAR.data);
-        selectByVis(rgPage.sendMonth, DataFile.LOGIN_MONTH.data);
-        clickBox(rgPage.sendDay);
+        clickBox(rgPage.dateOfBirthID);
+        dropdown(rgPage.sendYear, DataFile.LOGIN_YEAR.data);
+        dropdown(rgPage.sendMonth, DataFile.LOGIN_MONTH.data);
+        day(rgPage.sendDay,DataFile.DOB_DAY.data);
         clickBox(rgPage.subject);
-        sendData(rgPage.subject, DataFile.LOGIN_SUBJECT.data);
+        sendData(rgPage.subject,DataFile.LOGIN_SUBJECT.data);
         click(rgPage.hobbies);
         sendKeys(rgPage.uploadPic, DataFile.LOGIN_PHOTO.data);
         sendKeys(rgPage.locality, DataFile.LOGIN_ADDRESS.data);
-        sendData(rgPage.state, DataFile.STATE.data);
-        sendData(rgPage.city, DataFile.CITY.data);
+        sendTextToDropdown(rgPage.state,DataFile.STATE.data);
+        sendTextToDropdown(rgPage.city,DataFile.CITY.data);
         submit(rgPage.button);
         popUp(rgPage.popUp);
 

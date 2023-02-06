@@ -1,6 +1,9 @@
 package com.persistent.register.api.enums;
 
 public enum DataFile {
+    /**
+     * Here we are storing API end points
+     */
     DELETE("/delete/12"), GETALLEMPLOYEES("/employees"), GETSINGLEEMPLOYEE("/employee/21"), POSTEMPLOYEE("/create"), UPDATEEMPLOYEE("/update/8");
 
     public final String data;
