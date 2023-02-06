@@ -1,15 +1,21 @@
 package com.persistent.register.ui.enums;
 
-import com.persistent.register.ui.base.SeleniumMethods;
+public enum DataFile {
+    LOGIN_URL("https://demoqa.com/automation-practice-form"), LOGIN_FIRSTNAME("suneetha"), LOGIN_LASTNAME("kotapati"), LOGIN_EMAIL("suneetha.gitamw@gmail.com"), LOGIN_MOBILENUMBER("6305597254"), LOGIN_YEAR("2002"), LOGIN_MONTH("December"), LOGIN_SUBJECT("Commerce"), LOGIN_PHOTO("C:\\demopic\\MicrosoftTeams-image.png"), LOGIN_ADDRESS("Hyderabad,indira nagar,gachibowli"), STATE("Haryana"), CITY("Panipat"), EXPECTED_TITLE("DEMOQA"), TITLE_WEBSITE("Titles of the website matches");
 
-public class DataFile extends SeleniumMethods {
-    public String firstName = "Suneetha";
-    public String lastName = "Kotapati";
-    public String email = "Suneetha.gitamw@gmail.com";
-    public String mobileNumber = "6305597254";
-    public String year="2002";
-    public String month="December";
-    public String sendCommerce="Commerce";
-    public String pic = "C:\\demopic\\MicrosoftTeams-image.png";
-    public String address = "Hyderabad,indira nagar,gachibowli,Telangana.";
+    /**
+     * Fields
+     */
+    public String data;
+
+    /**
+     * Constructor
+     *
+     * @param
+     */
+    DataFile(String data) {
+        this.data = data;
+
+    }
 }
+

@@ -1,7 +1,5 @@
 package com.persistent.register.common;
 
-import java.time.Duration;
-
 public class SeleniumWaits {
     public static void timeout() {
         try {
@@ -14,7 +12,6 @@ public class SeleniumWaits {
 
     /**
      * This method will used to hard wait in the seconds time
-     *
      * @param timeInSeconds - pass value of second(s) for wait
      */
     public static void timeout(int timeInSeconds) {

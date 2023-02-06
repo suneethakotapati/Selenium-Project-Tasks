@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
+    <listeners>
+        <listener class-name="com.persistent.register.common.Listeners"></listener>
+    </listeners>
     <test verbose="2" preserve-order="true"
           name="Api test cases">
         <classes>
@@ -33,7 +36,7 @@
     </test>
     <test name="Ui test cases with Listeners">
         <classes>
-            <class name="com.persistent.register.ui.tests.TestClass">
+            <class name="com.persistent.register.ui.tests.RegistrationTests">
             </class>
         </classes>
     </test>
