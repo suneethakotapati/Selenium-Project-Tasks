@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="XYZ Bank">
+    <listeners>
+        <listener class-name="com.persistent.xyzbank.common.listeners.Listener"></listener>
+    </listeners>
+    <test name="UI test case">
+        <classes>
+            <class name="com.persistent.xyzbank.ui.tests.XYZBankTests">
+            </class>
+        </classes>
+    </test>
+</suite>

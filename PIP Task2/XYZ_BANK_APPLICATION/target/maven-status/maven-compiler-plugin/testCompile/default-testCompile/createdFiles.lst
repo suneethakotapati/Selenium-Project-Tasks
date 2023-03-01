@@ -1,0 +1,14 @@
+com\persistent\xyzbank\ui\pages\BankingAccountPage.class
+com\persistent\xyzbank\ui\base\SeleniumWaits.class
+com\persistent\xyzbank\common\listeners\Listener.class
+com\persistent\xyzbank\ui\pages\BankingCustomerPage.class
+com\persistent\xyzbank\ui\pages\BankingManagerOpenAccountPage.class
+com\persistent\xyzbank\common\enums\DataFile.class
+com\persistent\xyzbank\ui\pages\BankingTransactionListPage.class
+com\persistent\xyzbank\ui\pages\BankingManagerPage.class
+com\persistent\xyzbank\ui\pages\BankingLoginPage.class
+com\persistent\xyzbank\ui\pages\BankingManagerCustomersListPage.class
+com\persistent\xyzbank\ui\base\SeleniumMethods.class
+com\persistent\xyzbank\ui\tests\XYZBankTests.class
+com\persistent\xyzbank\ui\base\BaseMethods.class
+com\persistent\xyzbank\ui\pages\BankingManagerAddCustomerPage.class
