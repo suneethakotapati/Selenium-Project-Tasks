@@ -63,7 +63,6 @@ public class SeleniumMethods extends SeleniumWaits {
     public String[] getCustomerDetails(By customer, String firstName) {
         List<WebElement> elements = driver.findElements(customer);
         for (WebElement element : elements) {
-            System.out.println(element.getText());
             if (element.getText().contains(firstName)) {
                 String data = element.getText();
                 String[] tableCustomerData;
@@ -139,6 +138,11 @@ public class SeleniumMethods extends SeleniumWaits {
     public Boolean checkPresenceOfElement(By locator) {
         int size = driver.findElements(locator).size();
         return size > 0;
+    }
+    public void waitForStaleElement(By staleElement){
+        waitForStaleElement(driver.findElement(staleElement));
+
+
     }
 }
 

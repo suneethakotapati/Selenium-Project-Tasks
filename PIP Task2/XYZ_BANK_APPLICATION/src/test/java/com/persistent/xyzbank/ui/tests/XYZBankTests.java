@@ -9,8 +9,6 @@ import org.testng.ITestContext;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-
 
 /**
  * This class is used to run the all the Test cases
@@ -49,7 +47,6 @@ public class XYZBankTests extends BaseMethods {
 
         //save first customer id
         int firstCustomerId = bankingManagerAddCustomerPage.getCustomerId();
-        System.out.println(firstCustomerId);
 
 
         //Adding second customer account
@@ -58,10 +55,8 @@ public class XYZBankTests extends BaseMethods {
         bankingManagerAddCustomerPage.setSecondCustomerPostcode(DataFile.SECOND_CUSTOMER_POSTCODE.data);
         bankingManagerAddCustomerPage.clickAddCustomerButtonAfterPostCode();
 
-
         //save second customer id
         int secondCustomerId = bankingManagerAddCustomerPage.getCustomerId();
-        System.out.println(secondCustomerId);
         Assert.assertNotEquals(firstCustomerId, secondCustomerId);
         Assert.assertFalse(firstCustomerId <= 0 && secondCustomerId <= 0);
         Assert.assertFalse(Integer.toString(firstCustomerId).isEmpty());
@@ -69,7 +64,7 @@ public class XYZBankTests extends BaseMethods {
 
 
         //checking customers account
-        bankingManagerPage.clickCustomerButton();
+        bankingManagerPage.clickCustomersButton();
         String[] firstCustomerData = bankingManagerCustomersListPage.getTableRow(DataFile.FIRST_CUSTOMER_FIRSTNAME.data);
         String[] secondCustomerData = bankingManagerCustomersListPage.getTableRow(DataFile.SECOND_CUSTOMER_FIRSTNAME.data);
         Assert.assertNotEquals(firstCustomerData.length, 0);
@@ -91,32 +86,32 @@ public class XYZBankTests extends BaseMethods {
 
         //opening account for customers
         bankingManagerPage.clickOpenAccountButton();
-        String firstCustomerUserName = DataFile.FIRST_CUSTOMER_FIRSTNAME.data + " " + DataFile.FIRST_CUSTOMER_LASTNAME.data;
+        String firstName = DataFile.FIRST_CUSTOMER_FIRSTNAME.data + " ";
+        String lastName = DataFile.FIRST_CUSTOMER_LASTNAME.data;
+        String firstCustomerUserName = firstName.concat(lastName);
         context.setAttribute("firstCustomerUserName", firstCustomerUserName);
-        bankingManagerOpenAccountPage.selectFromCustomerDropdown(firstCustomerUserName);
-        bankingManagerOpenAccountPage.selectFromCurrencyDropdown(DataFile.CURRENCY_VALUE.data);
 
 
         //save first customer account number
+        bankingManagerOpenAccountPage.selectFromCustomerDropdown(firstCustomerUserName);
+        bankingManagerOpenAccountPage.selectFromCurrencyDropdown(DataFile.CURRENCY_VALUE.data);
         int firstCustomerAccountNumber = bankingManagerOpenAccountPage.clickProcessButton();
         context.setAttribute("firstCustomerAccountNumber", firstCustomerAccountNumber);
-        System.out.println(firstCustomerAccountNumber);
-        bankingManagerOpenAccountPage.selectFromCustomerDropdown(DataFile.SECOND_CUSTOMER_FIRSTNAME.data + " " + DataFile.SECOND_CUSTOMER_LASTNAME.data);
-        bankingManagerOpenAccountPage.selectFromCurrencyDropdown(DataFile.CURRENCY_VALUE.data);
 
 
         //save second customer account number
+        firstName = DataFile.SECOND_CUSTOMER_FIRSTNAME.data + " ";
+        lastName = DataFile.SECOND_CUSTOMER_LASTNAME.data;
+        String secondCustomerUserName = firstName.concat(lastName);
+        bankingManagerOpenAccountPage.selectFromCustomerDropdown(secondCustomerUserName);
+        bankingManagerOpenAccountPage.selectFromCurrencyDropdown(DataFile.CURRENCY_VALUE.data);
         int secondCustomerAccountNumber = bankingManagerOpenAccountPage.clickProcessButton();
-        System.out.println(secondCustomerAccountNumber);
-
 
         //checking customers account with account number
-        bankingManagerPage.clickCustomerButton();
+        bankingManagerPage.clickCustomersButton();
         Assert.assertNotEquals(firstCustomerAccountNumber, secondCustomerAccountNumber);
         String[] firstCustomerDetails = bankingManagerCustomersListPage.getTableRow(DataFile.FIRST_CUSTOMER_FIRSTNAME.data);
         String[] secondCustomerDetails = bankingManagerCustomersListPage.getTableRow(DataFile.SECOND_CUSTOMER_FIRSTNAME.data);
-        System.out.println(Arrays.toString(firstCustomerDetails));
-        System.out.println(Arrays.toString(secondCustomerDetails));
         Assert.assertNotEquals(firstCustomerDetails.length, 0);
         Assert.assertNotEquals(secondCustomerData.length, 0);
         actualFirstCustomerFirstName = firstCustomerDetails[0];
@@ -135,7 +130,6 @@ public class XYZBankTests extends BaseMethods {
         Assert.assertEquals(actualSecondCustomerLastName, DataFile.SECOND_CUSTOMER_LASTNAME.data);
         Assert.assertEquals(actualSecondCustomerPostCode, DataFile.SECOND_CUSTOMER_POSTCODE.data);
         Assert.assertEquals(secondCustomerAccountNumber, expectedSecondCustomerAccountNumber);
-
     }
 
 
@@ -144,30 +138,22 @@ public class XYZBankTests extends BaseMethods {
         //Customer Login
         bankingLoginPage.clickHomePageButton();
         bankingLoginPage.clickCustomerLoginButton();
-        bankingCustomerPage.selectNameFromDropdown(DataFile.FIRST_CUSTOMER_FIRSTNAME.data + " " + DataFile.FIRST_CUSTOMER_LASTNAME.data);
+        String firstCustomerUserName = (String) context.getAttribute("firstCustomerUserName");
+        bankingCustomerPage.selectNameFromDropdown(firstCustomerUserName);
         bankingCustomerPage.clickLoginButton();
 
         //Retrieving text from welcome page ui and asserting them
         String actualUsername = bankingAccountPage.getTextFromUiWelcomePage();
-        System.out.println(actualUsername);
-        String firstCustomerUserName = (String) context.getAttribute("firstCustomerUserName");
-        System.out.println(firstCustomerUserName);
+        firstCustomerUserName = (String) context.getAttribute("firstCustomerUserName");
         Assert.assertEquals(actualUsername, firstCustomerUserName);
         Integer actualAccountNumber = Integer.parseInt(bankingAccountPage.getTextFromUiAccountNumber());
-        System.out.println(actualAccountNumber);
         int firstCustomerAccountNumber = (int) context.getAttribute("firstCustomerAccountNumber");
         Assert.assertEquals(actualAccountNumber, firstCustomerAccountNumber, "Account number is not matched");
         String actualBalanceAccount = bankingAccountPage.getTextFromUiAccountBalance();
-        System.out.println(actualBalanceAccount);
         Assert.assertEquals(actualBalanceAccount, DataFile.BALANCE_ACCOUNT.data);
 
         //Withdrawn while balance is 0 and asserting the error message
-        int withdrawAmount = Integer.parseInt(DataFile.AMOUNT_TO_BE_WITHDRAWN.data);
-        System.out.println(withdrawAmount);
-        int currentBalance = Integer.parseInt(bankingAccountPage.getTextFromUiAccountBalance());
-        System.out.println(currentBalance);
         String message = bankingAccountPage.withdrawMessageFromUi(DataFile.AMOUNT_TO_BE_WITHDRAWN.data);
-        System.out.println(message);
         Assert.assertEquals(message, DataFile.FAILED_TRANSACTION_MESSAGE.data);
 
         //Depositing some amount and asserting the success message
@@ -175,17 +161,14 @@ public class XYZBankTests extends BaseMethods {
         int depositAmount = Integer.parseInt(DataFile.DEPOSIT_AMOUNT.data);
         int expectedBalanceAfterDeposit = balanceAmountBeforeDeposit + depositAmount;
         String actualDepositMessage = bankingAccountPage.depositMessageFromUi(DataFile.DEPOSIT_AMOUNT.data);
-        System.out.println(actualDepositMessage);
         String expectedDepositMessage = DataFile.SUCCESS_DEPOSIT_MESSAGE.data;
         Assert.assertEquals(actualDepositMessage, expectedDepositMessage, "Deposit message not matched");
         int actualBalanceAfterDeposit = Integer.parseInt(bankingAccountPage.getTextFromUiAccountBalance());
-        System.out.println(actualBalanceAfterDeposit);
         Assert.assertEquals(actualBalanceAfterDeposit, expectedBalanceAfterDeposit);
 
         //checking transaction details like amount and transaction type for deposit amount
         bankingTransactionListPage.clickTransactionButton();
         String[] transactionDetailsForDeposit = bankingTransactionListPage.getTransactionRow();
-        System.out.println(Arrays.toString(transactionDetailsForDeposit));
         String transactionAmountForDeposit = transactionDetailsForDeposit[5];
         Assert.assertEquals(transactionAmountForDeposit, DataFile.DEPOSIT_AMOUNT.data);
         String transactionTypeForDeposit = transactionDetailsForDeposit[6];
@@ -196,7 +179,6 @@ public class XYZBankTests extends BaseMethods {
         int withdrawAmountAfterDeposit = Integer.parseInt(DataFile.AMOUNT_TO_BE_WITHDRAWN.data);
         int currentBalanceAfterDeposit = Integer.parseInt(bankingAccountPage.getTextFromUiAccountBalance());
         String msg = bankingAccountPage.withdrawMessageFromUi(DataFile.AMOUNT_TO_BE_WITHDRAWN.data);
-        System.out.println(msg);
         if (withdrawAmountAfterDeposit > currentBalanceAfterDeposit) {
             Assert.assertEquals(msg, DataFile.FAILED_TRANSACTION_MESSAGE.data);
         } else {
@@ -206,26 +188,22 @@ public class XYZBankTests extends BaseMethods {
         //checking transaction details like amount and transaction type for withdrawn amount after deposit
         bankingTransactionListPage.clickTransactionButton();
         String[] transactionDetailsForWithdrawnAmount = bankingTransactionListPage.getTransactionRow();
-        System.out.println(Arrays.toString(transactionDetailsForWithdrawnAmount));
         String transactionAmountForWithdrawn = transactionDetailsForWithdrawnAmount[5];
         String transactionTypeForWithdrawn = transactionDetailsForWithdrawnAmount[6];
         Assert.assertEquals(transactionAmountForWithdrawn, DataFile.AMOUNT_TO_BE_WITHDRAWN.data);
         Assert.assertEquals(transactionTypeForWithdrawn, DataFile.DEBIT_TRANSACTION_TYPE.data);
         bankingTransactionListPage.clickBackButton();
-        int actual_balanceAccount_afterWithdrawn = Integer.parseInt(bankingAccountPage.getTextFromUiAccountBalance());
-        System.out.println(actual_balanceAccount_afterWithdrawn);
-        int expected_balanceAmount_afterWithdrawn = Integer.parseInt(transactionDetailsForDeposit[5]) - Integer.parseInt(transactionDetailsForWithdrawnAmount[5]);
-        System.out.println(expected_balanceAmount_afterWithdrawn);
-        Assert.assertEquals(actual_balanceAccount_afterWithdrawn, expected_balanceAmount_afterWithdrawn);
+        int actualBalanceAccountAfterWithdrawn = Integer.parseInt(bankingAccountPage.getTextFromUiAccountBalance());
+        int expectedBalanceAmountAfterWithdrawn = Integer.parseInt(transactionDetailsForDeposit[5]) - Integer.parseInt(transactionDetailsForWithdrawnAmount[5]);
+        Assert.assertEquals(actualBalanceAccountAfterWithdrawn, expectedBalanceAmountAfterWithdrawn);
     }
 
     @Test
     public void deleteAccount() {
-
         //deleting the second customer and checking the both customers
         bankingLoginPage.clickHomePageButton();
         bankingLoginPage.clickBankManagerLoginButton();
-        bankingManagerPage.clickCustomerButton();
+        bankingManagerPage.clickCustomersButton();
         bankingManagerCustomersListPage.setSecondCustomerInSearchTextBox(DataFile.SECOND_CUSTOMER_FIRSTNAME.data);
         bankingManagerCustomersListPage.clickDeleteButton();
 
@@ -235,6 +213,7 @@ public class XYZBankTests extends BaseMethods {
         //searching and checking the first customer details
         bankingManagerCustomersListPage.setFirstCustomerInSearchTextBox(DataFile.FIRST_CUSTOMER_FIRSTNAME.data);
         Assert.assertTrue(bankingManagerCustomersListPage.checkCustomerAccount());
+
     }
 }
 

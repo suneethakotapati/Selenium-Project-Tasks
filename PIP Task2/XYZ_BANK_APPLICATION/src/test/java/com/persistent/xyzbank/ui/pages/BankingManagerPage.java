@@ -1,6 +1,5 @@
 package com.persistent.xyzbank.ui.pages;
 
-import com.persistent.xyzbank.ui.base.BaseMethods;
 import com.persistent.xyzbank.ui.base.SeleniumMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -39,7 +38,7 @@ public class BankingManagerPage extends SeleniumMethods {
     /**
      * Clicks on the "Customer" button on the Banking Manager page
      */
-    public void clickCustomerButton() {
+    public void clickCustomersButton() {
         click(customersButton);
     }
 

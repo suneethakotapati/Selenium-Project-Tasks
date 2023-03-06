@@ -2,7 +2,6 @@ package com.persistent.xyzbank.ui.pages;
 
 import com.persistent.xyzbank.ui.base.SeleniumMethods;
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -134,26 +133,15 @@ public class BankingAccountPage extends SeleniumMethods {
      * @return the deposit message as a string
      */
     public String depositMessageFromUi(String depositAmount) {
-        try {
-            clickDepositButton();
-            waitForPresentElement(depositAmountTextBox);
-            waitForClickElement(depositAmountTextBox);
-            click(depositAmountTextBox);
-            waitForPresentElement(depositAmountTextBox);
-            waitForClickElement(depositAmountTextBox);
-            setAmountToBeDeposit(depositAmount);
-            clickDepositSubmitButton();
-            return getAttributeFromInnerHtml(depositMessage);
-        } catch (StaleElementReferenceException e) {
-            clickDepositButton();
-            waitForPresentElement(depositAmountTextBox);
-            waitForClickElement(depositAmountTextBox);
-            click(depositAmountTextBox);
-            waitForPresentElement(depositAmountTextBox);
-            waitForClickElement(depositAmountTextBox);
-            setAmountToBeDeposit(depositAmount);
-            clickDepositSubmitButton();
-            return getAttributeFromInnerHtml(depositMessage);
-        }
+        clickDepositButton();
+        waitForStaleElement(depositAmountTextBox);
+        waitForPresentElement(depositAmountTextBox);
+        waitForClickElement(depositAmountTextBox);
+        click(depositAmountTextBox);
+        waitForPresentElement(depositAmountTextBox);
+        waitForClickElement(depositAmountTextBox);
+        setAmountToBeDeposit(depositAmount);
+        clickDepositSubmitButton();
+        return getAttributeFromInnerHtml(depositMessage);
     }
 }

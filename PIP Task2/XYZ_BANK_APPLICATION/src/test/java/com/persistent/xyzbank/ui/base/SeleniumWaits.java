@@ -1,6 +1,7 @@
 package com.persistent.xyzbank.ui.base;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -49,10 +50,10 @@ public class SeleniumWaits extends BaseMethods {
 
     public int waitForAlertPresentAndGetId() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        System.out.println(driver.switchTo().alert().getText());
         String id = driver.switchTo().alert().getText();
+        int index = id.indexOf(":");
         wait.until(ExpectedConditions.alertIsPresent()).accept();
-        return Integer.parseInt(id.substring(46));
+        return Integer.parseInt(id.substring(index + 1));
     }
 
     /**
@@ -62,10 +63,20 @@ public class SeleniumWaits extends BaseMethods {
      */
     public int waitForPresentAndGetAccountNumber() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        System.out.println(driver.switchTo().alert().getText());
         String accountNumber = driver.switchTo().alert().getText();
+        int index = accountNumber.indexOf(":");
         wait.until(ExpectedConditions.alertIsPresent()).accept();
-        return Integer.parseInt(accountNumber.substring(50));
+        return Integer.parseInt(accountNumber.substring(index + 1));
+    }
+
+    /**
+     * Use ExpectedConditions. refreshed to avoid StaleElementReferenceException and retrieve the element again.
+     * This method updates the element by redrawing it, and we can access the referenced element.
+     * @param element on a web page
+     */
+    public void waitForStaleElement(WebElement element){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.stalenessOf(element)));
     }
 }
 
