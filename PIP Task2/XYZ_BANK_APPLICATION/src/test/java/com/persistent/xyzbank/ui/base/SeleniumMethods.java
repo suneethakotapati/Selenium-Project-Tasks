@@ -41,7 +41,7 @@ public class SeleniumMethods extends SeleniumWaits {
     /**
      * Wraps a WebElement with functionality to select options from a drop-down.
      *
-     * @param dropdown  used to locate elements on a web page
+     * @param dropdown        used to locate elements on a web page
      * @param textForDropdown the text to match
      */
     public void selectDropdown(By dropdown, String textForDropdown) {
@@ -100,6 +100,7 @@ public class SeleniumMethods extends SeleniumWaits {
      * if there are elements present in the transaction table, last row is the latest transaction made
      * by user so retrieving the full row and splitting the row based on spaces and saving them in an array and returning the array
      * else returning the empty array of size 0
+     *
      * @param transactionTable the By object used to locate the transaction table elements
      * @return returning an array
      */
@@ -120,7 +121,8 @@ public class SeleniumMethods extends SeleniumWaits {
 
     /**
      * Types the name of the first customer in the search bar.
-     * @param customer used to locate elements on a web page
+     *
+     * @param customer     used to locate elements on a web page
      * @param customerName text to textBox
      */
     public void sendFirstCustomerNameInSearchBar(By customer, String customerName) {
@@ -132,6 +134,7 @@ public class SeleniumMethods extends SeleniumWaits {
 
     /**
      * Checks if an element is present on the web page
+     *
      * @param locator the By object used to locate the element
      * @return true if the element is present, false otherwise
      */
@@ -139,7 +142,13 @@ public class SeleniumMethods extends SeleniumWaits {
         int size = driver.findElements(locator).size();
         return size > 0;
     }
-    public void waitForStaleElement(By staleElement){
+
+    /**
+     * wait for the element present in the web page
+     *
+     * @param staleElement the By object used to locate the element
+     */
+    public void waitForStaleElement(By staleElement) {
         waitForStaleElement(driver.findElement(staleElement));
 
 
