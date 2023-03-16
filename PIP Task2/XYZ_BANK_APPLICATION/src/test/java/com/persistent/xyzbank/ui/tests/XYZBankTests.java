@@ -1,7 +1,7 @@
 package com.persistent.xyzbank.ui.tests;
 
 import com.persistent.xyzbank.common.enums.DataFile;
-import com.persistent.xyzbank.ui.base.BaseMethods;
+import com.persistent.xyzbank.ui.base.SeleniumMethods;
 import com.persistent.xyzbank.ui.pages.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
  * This class is used to run the all the Test cases
  */
 @Listeners(com.persistent.xyzbank.common.listeners.Listener.class)
-public class XYZBankTests extends BaseMethods {
+public class XYZBankTests extends SeleniumMethods {
     WebDriver driver;
     BankingLoginPage bankingLoginPage;
     BankingManagerPage bankingManagerPage;
